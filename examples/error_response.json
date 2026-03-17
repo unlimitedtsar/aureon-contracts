@@ -1,0 +1,6 @@
+{
+    "code": "PROVIDER_TIMEOUT",
+    "message": "The underlying AI provider (gemini) failed to respond within 5 seconds.",
+    "retryable": true,
+    "provider_code": "504_GATEWAY_TIMEOUT"
+}

@@ -1,0 +1,292 @@
+{
+  "$defs": {
+    "CanonicalChatMessage": {
+      "additionalProperties": false,
+      "description": "A single message in a conversation, in a neutral format.",
+      "properties": {
+        "role": {
+          "pattern": "^(system|user|assistant|tool)$",
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "items": {
+            "$ref": "#/$defs/CanonicalContentPart"
+          },
+          "title": "Content",
+          "type": "array"
+        },
+        "tool_calls": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Calls"
+        },
+        "tool_call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Call Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "title": "CanonicalChatMessage",
+      "type": "object"
+    },
+    "CanonicalContentPart": {
+      "additionalProperties": false,
+      "description": "A single part of a message's content (e.g., text or image).",
+      "properties": {
+        "type": {
+          "default": "text",
+          "pattern": "^(text|image)$",
+          "title": "Type",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "mime_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mime Type"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data"
+        }
+      },
+      "title": "CanonicalContentPart",
+      "type": "object"
+    },
+    "CanonicalTool": {
+      "additionalProperties": false,
+      "description": "A tool definition, in a neutral format.",
+      "properties": {
+        "type": {
+          "default": "function",
+          "title": "Type",
+          "type": "string"
+        },
+        "function": {
+          "title": "Function",
+          "type": "object"
+        }
+      },
+      "required": [
+        "function"
+      ],
+      "title": "CanonicalTool",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The internal, provider-agnostic representation of a chat completion request.",
+  "properties": {
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "messages": {
+      "items": {
+        "$ref": "#/$defs/CanonicalChatMessage"
+      },
+      "title": "Messages",
+      "type": "array"
+    },
+    "tools": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CanonicalTool"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tools"
+    },
+    "tool_choice": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tool Choice"
+    },
+    "stream": {
+      "default": false,
+      "title": "Stream",
+      "type": "boolean"
+    },
+    "temperature": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Temperature"
+    },
+    "max_tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Tokens"
+    },
+    "top_p": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Top P"
+    },
+    "stop": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stop"
+    },
+    "has_vision_input": {
+      "default": false,
+      "title": "Has Vision Input",
+      "type": "boolean"
+    },
+    "requested_json_mode": {
+      "default": false,
+      "title": "Requested Json Mode",
+      "type": "boolean"
+    },
+    "session_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Id"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    },
+    "meta_data": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Meta Data"
+    }
+  },
+  "required": [
+    "model",
+    "messages"
+  ],
+  "title": "CanonicalChatRequest",
+  "type": "object"
+}

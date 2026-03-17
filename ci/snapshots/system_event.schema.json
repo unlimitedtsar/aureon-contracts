@@ -1,0 +1,63 @@
+{
+  "$defs": {
+    "EventType": {
+      "description": "Standardized event types for global momentum parity and tracking.",
+      "enum": [
+        "tool_call",
+        "tool_result",
+        "error",
+        "timeout",
+        "panic",
+        "security_alert",
+        "system_momentum"
+      ],
+      "title": "EventType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Standardized event model for distributed system coordination.\nAligns with the Protocol Layer specification (type, timestamp, source, payload).",
+  "properties": {
+    "event_type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/EventType"
+        }
+      ],
+      "description": "The hierarchical type of the event (e.g., PANIC, ERROR)"
+    },
+    "ts": {
+      "description": "Unix timestamp of when the event occurred",
+      "title": "Ts",
+      "type": "integer"
+    },
+    "node_id": {
+      "description": "The source node or agent that generated the event",
+      "title": "Node Id",
+      "type": "string"
+    },
+    "category": {
+      "description": "High-level category (e.g., security, infrastructure)",
+      "title": "Category",
+      "type": "string"
+    },
+    "meta": {
+      "description": "The event payload (opaque dictionary)",
+      "title": "Meta",
+      "type": "object"
+    },
+    "sender_id": {
+      "description": "The physical sender ID (for relay tracking)",
+      "title": "Sender Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_type",
+    "node_id",
+    "category",
+    "sender_id"
+  ],
+  "title": "SystemEvent",
+  "type": "object"
+}

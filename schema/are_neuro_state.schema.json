@@ -1,0 +1,52 @@
+{
+  "$defs": {
+    "PanicLevel": {
+      "enum": [
+        "NONE",
+        "SOFT",
+        "THROTTLE",
+        "ISOLATE",
+        "RESTORE"
+      ],
+      "title": "PanicLevel",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Authoritative representation of a provider's health state in the cluster.",
+  "properties": {
+    "provider_id": {
+      "title": "Provider Id",
+      "type": "string"
+    },
+    "panic_level": {
+      "$ref": "#/$defs/PanicLevel"
+    },
+    "health_score": {
+      "title": "Health Score",
+      "type": "number"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    },
+    "ts": {
+      "title": "Ts",
+      "type": "integer"
+    },
+    "sender_id": {
+      "title": "Sender Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "provider_id",
+    "panic_level",
+    "health_score",
+    "version",
+    "ts",
+    "sender_id"
+  ],
+  "title": "NeuroState",
+  "type": "object"
+}

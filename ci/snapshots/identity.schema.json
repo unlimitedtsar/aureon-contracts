@@ -1,0 +1,54 @@
+{
+  "additionalProperties": false,
+  "description": "Distributed identity model for tracking agents, tenants, and sessions across layers.",
+  "properties": {
+    "agent_id": {
+      "description": "Unique ID of the actor/agent",
+      "title": "Agent Id",
+      "type": "string"
+    },
+    "tenant_id": {
+      "description": "Multi-tenant isolation identifier",
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "session_id": {
+      "description": "Logical session grouping",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "correlation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Physical request correlation ID",
+      "title": "Correlation Id"
+    },
+    "origin_node": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "The node ID where the message originated",
+      "title": "Origin Node"
+    }
+  },
+  "required": [
+    "agent_id",
+    "tenant_id",
+    "session_id"
+  ],
+  "title": "Identity",
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "version": "v1",
+        "schema_id": "keystone_chat_request",
+        "timestamp": 1742211600,
+        "trace_id": "trace-uuid-123",
+        "request_id": "req-uuid-456"
+    },
+    "identity": {
+        "agent_id": "nexus-agent-01",
+        "tenant_id": "acme-corp",
+        "session_id": "session-789",
+        "correlation_id": "corr-abc",
+        "origin_node": "edge-node-01"
+    },
+    "data": {
+        "model": "gpt-4o",
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "Analyze the log pattern."
+                    }
+                ]
+            }
+        ],
+        "stream": true,
+        "temperature": 0.7
+    }
+}

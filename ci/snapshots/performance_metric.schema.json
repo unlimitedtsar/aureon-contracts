@@ -1,0 +1,65 @@
+{
+  "additionalProperties": false,
+  "description": "Unified metric model for agent performance and stability tracking.",
+  "properties": {
+    "provider_id": {
+      "title": "Provider Id",
+      "type": "string"
+    },
+    "failure_rate": {
+      "default": 0.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Failure Rate",
+      "type": "number"
+    },
+    "latency_p50": {
+      "description": "P50 latency in milliseconds",
+      "title": "Latency P50",
+      "type": "number"
+    },
+    "latency_p95": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "P95 latency in milliseconds",
+      "title": "Latency P95"
+    },
+    "stability_score": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Stability Score",
+      "type": "number"
+    },
+    "request_count": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Request Count",
+      "type": "integer"
+    },
+    "error_count": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Error Count",
+      "type": "integer"
+    },
+    "ts": {
+      "title": "Ts",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "provider_id",
+    "latency_p50",
+    "stability_score",
+    "ts"
+  ],
+  "title": "PerformanceMetric",
+  "type": "object"
+}

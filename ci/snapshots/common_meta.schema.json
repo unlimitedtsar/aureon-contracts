@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "description": "Metadata for distributed messages to ensure versioning and compatibility.",
+  "properties": {
+    "version": {
+      "default": "v1",
+      "description": "Contract version (e.g., v1, v2)",
+      "title": "Version",
+      "type": "string"
+    },
+    "schema_id": {
+      "description": "Unique schema identifier for cross-language mapping",
+      "title": "Schema Id",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Unix timestamp for cross-language safety",
+      "title": "Timestamp",
+      "type": "integer"
+    },
+    "trace_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Correlation ID for distributed tracing (root trace)",
+      "title": "Trace Id"
+    },
+    "request_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Unique identifier for the specific request-response cycle",
+      "title": "Request Id"
+    }
+  },
+  "required": [
+    "schema_id"
+  ],
+  "title": "CanonicalMeta",
+  "type": "object"
+}

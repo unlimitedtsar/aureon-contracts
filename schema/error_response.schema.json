@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "description": "Standardized error contract for the entire Aureon ecosystem.",
+  "properties": {
+    "code": {
+      "description": "Machine-readable error code (e.g., PROVIDER_TIMEOUT)",
+      "title": "Code",
+      "type": "string"
+    },
+    "message": {
+      "description": "Human-readable error description",
+      "title": "Message",
+      "type": "string"
+    },
+    "retryable": {
+      "default": false,
+      "description": "Whether the request can be safely retried",
+      "title": "Retryable",
+      "type": "boolean"
+    },
+    "provider_code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Original error code from the underlying provider",
+      "title": "Provider Code"
+    }
+  },
+  "required": [
+    "code",
+    "message"
+  ],
+  "title": "ErrorResponse",
+  "type": "object"
+}

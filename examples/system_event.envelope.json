@@ -1,0 +1,27 @@
+{
+    "meta": {
+        "version": "v1",
+        "schema_id": "system_event",
+        "timestamp": 1742212000,
+        "trace_id": "trace-uuid-123",
+        "request_id": "req-uuid-999"
+    },
+    "identity": {
+        "agent_id": "are-node-01",
+        "tenant_id": "system",
+        "session_id": "cluster-123",
+        "origin_node": "are-cluster-01"
+    },
+    "data": {
+        "event_type": "panic",
+        "ts": 1742212000,
+        "node_id": "gemini-provider-01",
+        "category": "infrastructure",
+        "meta": {
+            "panic_level": "THROTTLE",
+            "reason": "API Latency above 5s",
+            "latency_ms": 5200
+        },
+        "sender_id": "are-relay-01"
+    }
+}

@@ -1,0 +1,260 @@
+{
+  "$defs": {
+    "CanonicalChatMessage": {
+      "additionalProperties": false,
+      "description": "A single message in a conversation, in a neutral format.",
+      "properties": {
+        "role": {
+          "pattern": "^(system|user|assistant|tool)$",
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "items": {
+            "$ref": "#/$defs/CanonicalContentPart"
+          },
+          "title": "Content",
+          "type": "array"
+        },
+        "tool_calls": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Calls"
+        },
+        "tool_call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Call Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "title": "CanonicalChatMessage",
+      "type": "object"
+    },
+    "CanonicalChoice": {
+      "additionalProperties": false,
+      "description": "A single choice in a canonical response.",
+      "properties": {
+        "index": {
+          "title": "Index",
+          "type": "integer"
+        },
+        "message": {
+          "$ref": "#/$defs/CanonicalChatMessage"
+        },
+        "finish_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finish Reason"
+        }
+      },
+      "required": [
+        "index",
+        "message"
+      ],
+      "title": "CanonicalChoice",
+      "type": "object"
+    },
+    "CanonicalContentPart": {
+      "additionalProperties": false,
+      "description": "A single part of a message's content (e.g., text or image).",
+      "properties": {
+        "type": {
+          "default": "text",
+          "pattern": "^(text|image)$",
+          "title": "Type",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "mime_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mime Type"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data"
+        }
+      },
+      "title": "CanonicalContentPart",
+      "type": "object"
+    },
+    "CanonicalUsage": {
+      "additionalProperties": false,
+      "description": "Token usage details in a canonical format.",
+      "properties": {
+        "prompt_tokens": {
+          "default": 0,
+          "title": "Prompt Tokens",
+          "type": "integer"
+        },
+        "completion_tokens": {
+          "default": 0,
+          "title": "Completion Tokens",
+          "type": "integer"
+        },
+        "total_tokens": {
+          "default": 0,
+          "title": "Total Tokens",
+          "type": "integer"
+        },
+        "total_cost": {
+          "default": 0.0,
+          "title": "Total Cost",
+          "type": "number"
+        },
+        "provider_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Id"
+        }
+      },
+      "title": "CanonicalUsage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The internal, provider-agnostic representation of a chat completion response.",
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "choices": {
+      "items": {
+        "$ref": "#/$defs/CanonicalChoice"
+      },
+      "title": "Choices",
+      "type": "array"
+    },
+    "usage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CanonicalUsage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "latency_ms": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Latency Ms"
+    },
+    "session_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Id"
+    },
+    "conversation_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conversation Id"
+    }
+  },
+  "required": [
+    "id",
+    "model",
+    "choices"
+  ],
+  "title": "CanonicalChatResponse",
+  "type": "object"
+}
