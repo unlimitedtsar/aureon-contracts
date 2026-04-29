@@ -1,0 +1,13 @@
+{
+  "namespace": "project_x",
+  "owner": "team_or_service_name",
+  "version": "0.1.0",
+  "status": "draft",
+  "compatibility": {
+    "core_major": 1,
+    "additive_only": true
+  },
+  "files": [
+    "metadata.schema.json"
+  ]
+}

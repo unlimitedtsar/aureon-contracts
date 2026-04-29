@@ -39,7 +39,21 @@ def compare_schemas(old_schema, new_schema, name):
         if old_type != new_type:
             errors.append(f"BREAKING: Type changed for field '{field}' in model '{name}': {old_type} -> {new_type}")
 
-    # 3. Check for enum changes (if applicable)
+    # 3. Check required-field drift
+    old_required = set(old_schema.get("required", []))
+    new_required = set(new_schema.get("required", []))
+    removed_required = old_required - new_required
+    if removed_required:
+        errors.append(f"BREAKING: Required fields removed from '{name}': {sorted(removed_required)}")
+
+    # 4. Check top-level additionalProperties contract drift
+    if old_schema.get("additionalProperties", True) != new_schema.get("additionalProperties", True):
+        errors.append(
+            f"BREAKING: additionalProperties changed in '{name}': "
+            f"{old_schema.get('additionalProperties', True)} -> {new_schema.get('additionalProperties', True)}"
+        )
+
+    # 5. Check for enum changes (if applicable)
     if "enum" in old_schema:
         old_enums = set(old_schema["enum"])
         new_enums = set(new_schema.get("enum", []))
@@ -71,10 +85,12 @@ def main():
         sys.exit(1)
 
     total_errors = []
+    current_schema_names = {p.name for p in CURRENT_DIR.glob("*.json")}
+
     for snapshot_file in SNAPSHOT_DIR.glob("*.json"):
         current_file = CURRENT_DIR / snapshot_file.name
         if not current_file.exists():
-            print(f"WARNING: Current schema for {snapshot_file.name} is missing. Skipping check.")
+            total_errors.append(f"BREAKING: Current schema for {snapshot_file.name} is missing.")
             continue
             
         with open(snapshot_file, "r") as f:
@@ -84,6 +100,12 @@ def main():
             
         errors = compare_schemas(old_schema, new_schema, snapshot_file.stem)
         total_errors.extend(errors)
+
+    # New schema files are additive (allowed), but surface signal for governance.
+    snapshot_names = {p.name for p in SNAPSHOT_DIR.glob("*.json")}
+    added = sorted(current_schema_names - snapshot_names)
+    if added:
+        print(f"INFO: New schema files detected (additive): {added}")
 
     if total_errors:
         print("\n--- PROTOCOL VIOLATION DETECTED ---")

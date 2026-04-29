@@ -1,0 +1,55 @@
+{
+  "$defs": {
+    "EventType": {
+      "description": "Standardized event types for global momentum parity and tracking.",
+      "enum": [
+        "tool_call",
+        "tool_result",
+        "error",
+        "timeout",
+        "panic",
+        "security_alert",
+        "aureon_momentum"
+      ],
+      "title": "EventType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Sensory event model for distributed coordination.",
+  "properties": {
+    "node_id": {
+      "title": "Node Id",
+      "type": "string"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventType"
+    },
+    "ts": {
+      "title": "Ts",
+      "type": "integer"
+    },
+    "sender_id": {
+      "title": "Sender Id",
+      "type": "string"
+    },
+    "meta": {
+      "default": {},
+      "title": "Meta",
+      "type": "object"
+    }
+  },
+  "required": [
+    "node_id",
+    "category",
+    "event_type",
+    "ts",
+    "sender_id"
+  ],
+  "title": "AureonEvent",
+  "type": "object"
+}

@@ -2,8 +2,8 @@ from .models import (
     CanonicalChatRequest, CanonicalChatMessage, CanonicalContentPart,
     CanonicalChatResponse, CanonicalChoice, CanonicalUsage, CanonicalTool
 )
+from .._version import __version__
 
-__version__ = "1.0.0"
 __all__ = [
     "CanonicalChatRequest", "CanonicalChatMessage", "CanonicalContentPart",
     "CanonicalChatResponse", "CanonicalChoice", "CanonicalUsage", "CanonicalTool"
