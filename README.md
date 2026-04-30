@@ -1,6 +1,6 @@
 # Aureon Contracts
 
-Canonical, versioned, zero-behavior contracts for the Keystone/Aureon ecosystem.
+Canonical, versioned, zero-behavior contracts for the Keystone/Aureon ecosystem. Last reviewed: 2026-04-30.
 
 ## Purpose
 - Single protocol language across Python, Go, and Rust.
