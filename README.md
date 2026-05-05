@@ -1,5 +1,10 @@
 # Aureon Contracts
 
+## Governance Entry
+- Monorepo onboarding: [../00_Governance/START_HERE.md](../00_Governance/START_HERE.md)
+- Monorepo lock constraints: [../00_Governance/ARCHITECTURE_LOCK.md](../00_Governance/ARCHITECTURE_LOCK.md)
+
+
 Canonical, versioned, zero-behavior contracts for the Keystone/Aureon ecosystem. Last reviewed: 2026-04-30.
 
 ## Purpose
