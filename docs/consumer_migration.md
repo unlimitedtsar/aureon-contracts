@@ -1,4 +1,23 @@
+---
+type: source
+tier: domain
+domain: keystone
+status: active
+tags:
+  - source
+  - governance
+---
 # Consumer Migration Guide
+
+## Parent
+[[START_HERE]]
+
+## Depends On
+[[SYSTEM_MANIFEST]]
+
+## Related
+[[ARCHITECTURE_LOCK]]
+
 
 ## Scope
 Guide for services that pin `aureon_contracts` by git tag.

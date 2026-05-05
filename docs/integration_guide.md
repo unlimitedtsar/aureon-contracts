@@ -1,4 +1,23 @@
+---
+type: source
+tier: domain
+domain: keystone
+status: active
+tags:
+  - source
+  - governance
+---
 # Integration Guide: Project Language -> Aureon Contracts
+
+## Parent
+[[START_HERE]]
+
+## Depends On
+[[SYSTEM_MANIFEST]]
+
+## Related
+[[ARCHITECTURE_LOCK]]
+
 
 ## Objective
 Allow each project to express its own metadata language while preserving a single shared protocol.

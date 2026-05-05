@@ -1,4 +1,23 @@
+---
+type: source
+tier: domain
+domain: keystone
+status: active
+tags:
+  - source
+  - governance
+---
 # Aureon Protocol: Schema Evolution Laws
+
+## Parent
+[[START_HERE]]
+
+## Depends On
+[[SYSTEM_MANIFEST]]
+
+## Related
+[[ARCHITECTURE_LOCK]]
+
 
 To maintain a stable, production-grade ecosystem and avoid "version hell," all developers must adhere to these absolute laws when modifying `aureon-contracts`.
 

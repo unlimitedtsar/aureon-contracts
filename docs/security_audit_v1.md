@@ -1,4 +1,23 @@
+---
+type: source
+tier: domain
+domain: keystone
+status: active
+tags:
+  - source
+  - governance
+---
 # Security Audit Report: aureon-contracts (v1.0.0)
+
+## Parent
+[[START_HERE]]
+
+## Depends On
+[[SYSTEM_MANIFEST]]
+
+## Related
+[[ARCHITECTURE_LOCK]]
+
 
 This report summarizes the security findings for the `aureon-contracts` module following its production-grade restructuring.
 

@@ -1,4 +1,23 @@
+---
+type: source
+tier: domain
+domain: keystone
+status: active
+tags:
+  - source
+  - governance
+---
 # Aureon Contracts Release Policy
+
+## Parent
+[[START_HERE]]
+
+## Depends On
+[[SYSTEM_MANIFEST]]
+
+## Related
+[[ARCHITECTURE_LOCK]]
+
 
 ## Goal
 Keep contract evolution stable for all downstream systems that pin by git tag.
